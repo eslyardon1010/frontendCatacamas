@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;500;600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500;600;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --colorPrimario: #286ebdce;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* font-family: 'Poppins', sans-serif; */
+  font-family: 'Montserrat', sans-serif;
+}
+
+img {
+  width: 100%;
+  /* max-width: 100%; */
+  height: 100%;
+  /* max-height: 100%; */
+  object-fit: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.active {
+  color: var(--colorPrimario);
+  font-weight: 800;
+}
