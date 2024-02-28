@@ -34,7 +34,7 @@ const Login = () => {
 		try {
 			setEmail(email.toLowerCase().trim())
 			setPassword(password.trim())
-			let res = await axios.post('backend-production-3de4.up.railway.app/login', {
+			let res = await axios.post("localhost:3000/login", {
 				email,
 				password,
 			})
@@ -55,7 +55,7 @@ const Login = () => {
 					if (idRol == 1) {
 						try {
 							res = await axios.get(
-								'backend-production-3de4.up.railway.app/cliente/citas/' + idUsuario
+								'localhost:3000/cliente/citas/' + idUsuario
 							)
 							dispatch(SET_CITAS(res.data))
 						} catch (error) {
@@ -66,7 +66,7 @@ const Login = () => {
 					// Obtenemos nuestras citas cuando somos barberos
 					if (idRol == 2) {
 						try {
-							res = await axios.get('backend-production-3de4.up.railway.app/barbero/citas/' + idUsuario)
+							res = await axios.get('localhost:3000/barbero/citas/' + idUsuario)
 							dispatch(SET_CITAS_BARBERO(res.data))
 						} catch (error) {
 							console.log(error);
@@ -76,7 +76,7 @@ const Login = () => {
 					// Obtenemos todos los clientes de la barberia
 					if (idRol >= 2) {
 						try {
-							res = await axios.get('backend-production-3de4.up.railway.app/clientes')
+							res = await axios.get('localhost:3000/clientes')
 							dispatch(SET_CLIENTES(res.data))
 						} catch (error) {
 							console.log(error)
@@ -86,7 +86,7 @@ const Login = () => {
 					// Obtenemos las citas de todos los clientes
 					if (idRol == 3) {
 						// Cargamos las citas
-						res = await axios.get('backend-production-3de4.up.railway.app/citas')
+						res = await axios.get('localhost:3000/citas')
 						dispatch(SET_CITAS_CLIENTES(res.data)) // actualizamos las citas de los clientes
 					}
 				}

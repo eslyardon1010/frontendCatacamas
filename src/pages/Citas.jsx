@@ -51,7 +51,7 @@ const Citas = () => {
 		if (res.isConfirmed) {
 			// Actualizamos en la bd
 			const respuesta = await axios.put(
-				'backend-production-3de4.up.railway.app/cita/' + idCita,
+				'localhost:3000/cita/' + idCita,
 				{ estado: nuevoEstado }
 			)
 			if (respuesta.data.affectedRows > 0) {

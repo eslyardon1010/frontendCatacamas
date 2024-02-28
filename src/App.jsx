@@ -44,7 +44,7 @@ function App() {
 	}, [])
 
 	const getDatosUsuario = async idToken => {
-		const res = await axios.get('backend-production-3de4.up.railway.app/datos/' + idToken) // cargamos datos del backend con ayuda del id
+		const res = await axios.get('localhost:3000/datos/' + idToken) // cargamos datos del backend con ayuda del id
 		dispatch(SET_USUARIO(res.data)) // Actualizamos el estado del usuario
 		if (res.data.idRol == 1) getCitasCliente(res.data.idUsuario) // Obtenemos los datos de nuestras citas cuando somos clientes
 		if (res.data.idRol == 2) getCitasBarbero(res.data.idUsuario) // Obtenemos las citas del barbero
@@ -54,7 +54,7 @@ function App() {
 
 	const getCitasCliente = async id => {
 		try {
-			const res = await axios.get('backend-production-3de4.up.railway.app/cliente/citas/' + id)
+			const res = await axios.get('localhost:3000/cliente/citas/' + id)
 			dispatch(SET_CITAS(res.data)) // actualizamos las citas del usuario
 		} catch (error) {
 			console.log(error)
@@ -64,7 +64,7 @@ function App() {
 	const getCitasBarbero = async idBarbero => {
 		try {
 			const res = await axios.get(
-				'backend-production-3de4.up.railway.app/barberos/citas/' + idBarbero
+				'localhost:3000/barberos/citas/' + idBarbero
 			)
 			dispatch(SET_CITAS_BARBERO(res.data))
 		} catch (error) {
@@ -74,7 +74,7 @@ function App() {
 
 	const getCitasDeClientes = async () => {
 		try {
-			const res = await axios.get('backend-production-3de4.up.railway.app/citas')
+			const res = await axios.get('localhost:3000/citas')
 			dispatch(SET_CITAS_CLIENTES(res.data)) // actualizamos las citas de los clientes
 		} catch (error) {
 			console.log(error)
@@ -83,7 +83,7 @@ function App() {
 
 	const getClientes = async () => {
 		try {
-			const res = await axios.get('backend-production-3de4.up.railway.app/clientes')
+			const res = await axios.get('localhost:3000/clientes')
 			dispatch(SET_CLIENTES(res.data))
 		} catch (error) {
 			console.log(error)

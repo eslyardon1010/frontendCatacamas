@@ -130,7 +130,7 @@ const Cliente = () => {
 	// Obtiene los barberos de la bd
 	const getBarberos = async () => {
 		try {
-			const res = await axios.get('backend-production-3de4.up.railway.app/barberos')
+			const res = await axios.get('localhost:3000/barberos')
 			setBarberos(res.data)
 		} catch (error) {
 			console.log(error.message)
@@ -140,7 +140,7 @@ const Cliente = () => {
 	// Obtiene los servicios de la bd
 	const getServicios = async () => {
 		try {
-			const res = await axios.get('backend-production-3de4.up.railway.app/servicios')
+			const res = await axios.get('localhost:3000/servicios')
 			setServicios(res.data)
 		} catch (error) {
 			console.log(error.message)
@@ -211,11 +211,11 @@ const Cliente = () => {
 			const fecha = new Date(anio, mes - 1, dia)
 			const numeroDia = fecha.getDay()
 			const horario = await axios.get(
-				`backend-production-3de4.up.railway.app/horario/${barberoSeleccionado.idUsuario}/${numeroDia}`
+				`localhost:3000/horario/${barberoSeleccionado.idUsuario}/${numeroDia}`
 			)
 			// console.log(horario.data) // me retorna un arreglo
 			const citas = await axios.get(
-				`backend-production-3de4.up.railway.app/citas/${barberoSeleccionado.idUsuario}/${fechaSeleccionada}`
+				`localhost:3000/citas/${barberoSeleccionado.idUsuario}/${fechaSeleccionada}`
 			)
 
 			// Validamos si trabaja ese dia
@@ -441,7 +441,7 @@ const Cliente = () => {
 
 		try {
 			let res = await axios.post(
-				'backend-production-3de4.up.railway.app/cliente/agendar-cita',
+				'localhost:3000/cliente/agendar-cita',
 				cita
 			)
 			if (res.data.affectedRows > 0) {
@@ -450,7 +450,7 @@ const Cliente = () => {
 				let estado = true
 				cita.servicios.forEach(async servicio => {
 					res = await axios.post(
-						'backend-production-3de4.up.railway.app/cliente/agregar-servicio',
+						'localhost:3000/cliente/agregar-servicio',
 						{ idCita: id, idServicio: servicio.idServicio }
 					)
 					if (res.data.affectedRows == 0) estado = false
@@ -473,7 +473,7 @@ const Cliente = () => {
 
 					// Consultamos a la bd las citas y las actualizamos en el estado global
 					res = await axios.get(
-						'backend-production-3de4.up.railway.app/cliente/citas/' + usuarioSlice.idUsuario
+						'localhost:3000/cliente/citas/' + usuarioSlice.idUsuario
 					)
 					dispatch(SET_CITAS(res.data)) // actualizamos las citas del usuario
 				}
@@ -498,7 +498,7 @@ const Cliente = () => {
 		if (res.isConfirmed) {
 			// Actualizamos en la bd
 			const respuesta = await axios.put(
-				'backend-production-3de4.up.railway.app/cita/' + idCita,
+				'localhost:3000/cita/' + idCita,
 				{ estado: 3 }
 			)
 			if (respuesta.data.affectedRows > 0) {
