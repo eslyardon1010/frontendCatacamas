@@ -43,7 +43,7 @@ const Register = () => {
 		if (!validarPassword(cliente.password)) return false
 		try {
 			await axios.post(
-				'https://backend-production-3de4.up.railway.app/cliente/register',
+				'backend-production-3de4.up.railway.app/cliente/register',
 				cliente
 			)
 			// console.log(res)

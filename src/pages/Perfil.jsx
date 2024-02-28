@@ -59,7 +59,7 @@ const Perfil = () => {
 	const handleClickGuardarTodo = async e => {
 		e.preventDefault()
 		if (!validarCampos()) return
-		const res = await axios.put('https://backend-production-3de4.up.railway.app/perfil', {
+		const res = await axios.put('backend-production-3de4.up.railway.app/perfil', {
 			usuario,
 		})
 		if (res.data.affectedRows > 0) {
@@ -96,7 +96,7 @@ const Perfil = () => {
 		if (isConfirmed) {
 			try {
 				const res = await axios.delete(
-					'https://backend-production-3de4.up.railway.app/cliente/perfil/' + usuario.idUsuario
+					'backend-production-3de4.up.railway.app/cliente/perfil/' + usuario.idUsuario
 				)
 				if (res.data.affectedRows > 0) {
 					Swal.fire({
