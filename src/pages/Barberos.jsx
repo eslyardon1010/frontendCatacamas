@@ -82,7 +82,7 @@ const Barberos = () => {
 	// Funcion para traer los barberos del backend, la utilizo cuando se esta renderizando la pagina
 	const getBarberos = async () => {
 		try {
-			const res = await axios.get('localhost:3000/barberos')
+			const res = await axios.get('https://backend-production-3de4.up.railway.app/barberos')
 			setBarberos(res.data)
 		} catch (error) {
 			console.log(error.message)
@@ -104,7 +104,7 @@ const Barberos = () => {
 		if (!validarTelefono(barbero.telefono)) return false
 		if (!validarPassword(barbero.password)) return false
 		try {
-			await axios.post('localhost:3000/admin/barberos/agregar', barbero)
+			await axios.post('https://backend-production-3de4.up.railway.app/admin/barberos/agregar', barbero)
 			limpiarCampos()
 			getBarberos()
 			cerrarVentanaModal()
@@ -140,7 +140,7 @@ const Barberos = () => {
 			return false
 		try {
 			await axios.put(
-				'localhost:3000/admin/barberos/' + barbero.idUsuario,
+				'https://backend-production-3de4.up.railway.app/admin/barberos/' + barbero.idUsuario,
 				barbero
 			)
 			limpiarCampos()
@@ -183,7 +183,7 @@ const Barberos = () => {
 		if (isConfirmed) {
 			try {
 				const res = await axios.delete(
-					'localhost:3000/admin/barberos/' + id
+					'https://backend-production-3de4.up.railway.app/admin/barberos/' + id
 				)
 				if (res.data.affectedRows > 0) {
 					Swal.fire(
